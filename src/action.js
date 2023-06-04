@@ -48,7 +48,7 @@ try{
 		let body = await response.readBody()
 		let json = JSON.parse(body)
 
-		if(json.retcode && (json.retcode === 0 || json.retcode === -5003)){
+		if(json.hasOwnProperty('retcode') && (json.retcode === 0 || json.retcode === -5003)){
 			// return the message in case of success
 			core.info(`\u001b[38;5;40m${json.message}`);
 		}
