@@ -2889,7 +2889,7 @@ try{
 		else{
 			// whatever went wrong...
 			if(json.message){
-				core.info(`\u001b[38;5;160m${json.message}`);
+				core.info(`\u001b[38;5;196m${json.message}`);
 
 				throw new Error(json.message);
 			}
