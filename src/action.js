@@ -48,13 +48,15 @@ try{
 		let body = await response.readBody()
 		let json = JSON.parse(body)
 
-		if(json.retcode && [0, -5003].includes(json.retcode)){
+		if(json.retcode && (json.retcode === 0 || json.retcode === -5003)){
 			// return the message in case of success
-			core.info(`\u001b[38;5;34m${json.message}`);
+			core.info(`\u001b[38;5;40m${json.message}`);
 		}
 		else{
 			// whatever went wrong...
 			if(json.message){
+				core.info(`\u001b[38;5;160m${json.message}`);
+
 				throw new Error(json.message);
 			}
 
@@ -67,4 +69,3 @@ try{
 catch(error){
 	core.setFailed(error.message);
 }
-
