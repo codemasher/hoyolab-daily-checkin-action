@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  build:
+
+    name: "Build package"
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
+      - name: "Setup Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: current
+          cache: npm
+
+      - name: "Install dependencies"
+        run: | 
+          npm install
+          npm run install-ncc
+
+      - name: "Build"
+        run: npm run build
+
+      - name: "Commit dist files"
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add dist/index.js
+          git add dist/licenses.txt
+          git commit -m ":octocat: built dist"
+          git push

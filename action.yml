@@ -1,0 +1,31 @@
+name: "Hoylab daily check-in"
+description: "Obtain your daily check-in rewards automatically"
+
+inputs:
+  cookie:
+    description: "The id/token cookie parameters from hoyolab"
+    required: true
+  language:
+    description: "Language (only affects the returned message)"
+    required: false
+    default: "en-us"
+  genshin:
+    description: "Genshin Impact"
+    required: false
+    default: "false"
+  honkai3rd:
+    description: "Honkai Inpact 3rd"
+    required: false
+    default: "false"
+  starrail:
+    description: "Honkai Star Rail"
+    required: false
+    default: "false"
+  tearsofthemis:
+    description: "Tears of Themis"
+    required: false
+    default: "false"
+
+runs:
+  using: "node16"
+  main: "dist/index.js"
