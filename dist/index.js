@@ -2837,6 +2837,7 @@ const core = __nccwpck_require__(834);
 const http = __nccwpck_require__(251);
 
 const ua        = 'hoyolabDailyCheckinAction/1.0 +https://github.com/codemasher/hoyolab-daily-checkin-action';
+const avatar    = 'https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/kirara.png';
 const games     = ['genshin', 'honkai3rd', 'starrail', 'tearsofthemis'];
 const languages = [
 	'zh-cn', 'zh-tw', 'de-de', 'en-us', 'es-es', 'fr-fr', 'id-id', 'it-it',
@@ -2991,7 +2992,7 @@ async function sendDiscordNotification(messages, onlyNotifyFailed, accountDescri
 
 		let data = {
 			username  : 'hoyolab-daily-checkin',
-			avatar_url: 'https://i.imgur.com/68ktpFH.png',
+			avatar_url: avatar,
 			content   : message.join('\n'),
 		};
 
