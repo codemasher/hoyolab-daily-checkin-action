@@ -59,3 +59,11 @@ jobs:
 - `discord-notify` (`boolean`): Enable Discord notifications
 - `discord-webhook` (`string`): The Discord webhook URL, see https://support.discord.com/hc/en-us/articles/228383668
 - `discord-user-id` (`number`): The Discord user ID to ping, see: https://support.discord.com/hc/en-us/articles/206346498
+
+
+## Disclaimer
+WE'RE TOTALLY NOT RUNNING A PRODUCTION-LIKE ENVIRONMENT ON GITHUB.<br>
+WE'RE RUNNING A TEST AND POST THE RESULT TO AN EXTERNAL WEBSITE.<br>
+WE'RE JUST LOOKING IF THE SCRIPT STILL WORKS ON A DAILY SCHEDULE.
+
+**I take no responsibility for the security of your account(s) by using this script.**
