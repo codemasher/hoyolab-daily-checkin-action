@@ -1,0 +1,25 @@
+on:
+  schedule:
+    - cron: "0 19 * * *"
+
+jobs:
+  hoyolab-checkin:
+
+    name: "Hoyolab daily check-in"
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
+      - name: "Hoyolab check-in (Account 1)"
+        uses: codemasher/hoyolab-daily-checkin-action@main
+        with:
+          cookie: ${{ secrets.ACCOUNT1 }}
+          language: "en-us"
+          genshin: true
+          honkai3rd: true
+          starrail: true
+          tearsofthemis: false
+     
+       # repeat the previous step for each of your accounts
