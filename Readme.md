@@ -3,6 +3,8 @@
 A [GitHub Action](https://docs.github.com/en/actions/creating-actions/about-custom-actions) to run the [Hoyolab daily check-in](https://www.hoyolab.com/circles) 
 for [Genshin Impact](https://genshin.hoyoverse.com/), [Honkai Impact 3rd](https://honkaiimpact3.hoyoverse.com/), [Honkai Star Rail](https://hsr.hoyoverse.com/) and [Tears of Themis](https://tot.hoyoverse.com/).
 
+If you want to run this action, fork and use the [codemasher/hoyolab-daily-checkin](https://github.com/codemasher/hoyolab-daily-checkin) repo.
+
 [![License][license-badge]][license]
 [![Build][gh-action-badge]][gh-action]
 
