@@ -45,9 +45,14 @@ jobs:
 
 ## Inputs
 
-- `cookie`: The id/token cookie parameters from Hoyolab
-- `language`: Language (only affects the returned message), can be one of `zh-cn`, `zh-tw`, `de-de`, `en-us`, `es-es`, `fr-fr`, `id-id`, `it-it`, `ja-jp`, `ko-kr`, `pt-pt`, `ru-ru`, `th-th`, `tr-tr`, `vi-vn`
+- `cookie`: *[required]* The id/token cookie parameters from Hoyolab
 - `genshin` (`boolean`): Genshin Impact
 - `honkai3rd` (`boolean`): Honkai Inpact 3rd
 - `starrail` (`boolean`): Honkai Star Rail
 - `tearsofthemis` (`boolean`): Tears of Themis
+- `language`: Language (only affects the returned message), can be one of `zh-cn`, `zh-tw`, `de-de`, `en-us`, `es-es`, `fr-fr`, `id-id`, `it-it`, `ja-jp`, `ko-kr`, `pt-pt`, `ru-ru`, `th-th`, `tr-tr`, `vi-vn`
+- `account-description` (`string`): An identifier for the current account that will appear in notifications
+- `only-notify-failed` (`boolean`): Only send notifications when a job failed
+- `discord-notify` (`boolean`): Enable Discord notifications
+- `discord-webhook` (`string`): The Discord webhook URL, see https://support.discord.com/hc/en-us/articles/228383668
+- `discord-user-id` (`number`): The Discord user ID to ping, see: https://support.discord.com/hc/en-us/articles/206346498
