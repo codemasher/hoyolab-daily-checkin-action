@@ -2882,7 +2882,7 @@ async function run(){
 
 	// post discord notifications
 	if(isTruthy(core.getInput('discord-notify'))){
-		await sendDiscordNotification(messages, onlyNotifyFailed, accountDescription);
+		await sendDiscordNotification(messages);
 	}
 
 }
@@ -2956,11 +2956,9 @@ async function checkIn(game){
  * Sends a status message for the current account to the given Discord webhook URL
  *
  * @param {Object<{fail, game, text}>[]} messages
- * @param {Boolean} onlyNotifyFailed
- * @param {String} accountDescription
  * @returns {Promise<void>}
  */
-async function sendDiscordNotification(messages, onlyNotifyFailed, accountDescription){
+async function sendDiscordNotification(messages){
 	let discordWebhook = core.getInput('discord-webhook').trim();
 	let discordUserID = core.getInput('discord-user-id').trim();
 
