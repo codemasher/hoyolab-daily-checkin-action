@@ -1,31 +1,61 @@
 name: "Hoylab daily check-in"
 description: "Obtain your daily check-in rewards automatically"
+runs:
+  using: "node16"
+  main: "dist/index.js"
 
 inputs:
+
   cookie:
     description: "The id/token cookie parameters from hoyolab"
     required: true
+
   language:
-    description: "Language (only affects the returned message)"
+    description: "Language for the returned message, notifications and ingame mail"
     required: false
     default: "en-us"
+
   genshin:
     description: "Genshin Impact"
     required: false
     default: "false"
+
   honkai3rd:
     description: "Honkai Inpact 3rd"
     required: false
     default: "false"
+
   starrail:
     description: "Honkai Star Rail"
     required: false
     default: "false"
+
   tearsofthemis:
     description: "Tears of Themis"
     required: false
     default: "false"
 
-runs:
-  using: "node16"
-  main: "dist/index.js"
+  account-description:
+    description: "An identifier for the current account that will appear in notifications"
+    required: false
+    default: ""
+
+  only-notify-failed:
+    description: "Only send notifications when a job failed"
+    required: false
+    default: "true"
+
+  discord-notify:
+    description: "Enable Discord notifications"
+    required: false
+    default: "false"
+
+  discord-webhook:
+    description: "The Discord webhook URL"
+    required: false
+    default: ""
+
+  discord-user-id:
+    description: "Discord user ID"
+    required: false
+    default: ""
