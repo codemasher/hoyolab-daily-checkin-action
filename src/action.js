@@ -62,7 +62,7 @@ const i18nGameNames = {
 
 const httpClient         = new http.HttpClient(ua);
 const accountDescription = core.getInput('account-description').substring(0, 100).trim();
-const onlyNotifyFailed   = core.getInput('only-notify-failed');
+const onlyNotifyFailed   = isTruthy('only-notify-failed');
 
 let lang = core.getInput('language').toLowerCase();
 
@@ -87,7 +87,7 @@ async function run(){
 	let messages = await Promise.all(games.map(checkIn));
 
 	// post discord notifications
-	if(isTruthy(core.getInput('discord-notify'))){
+	if(isTruthy('discord-notify')){
 		await sendDiscordNotification(messages);
 	}
 
@@ -96,11 +96,11 @@ async function run(){
 /**
  * for boolean values passed via the string-only inputs
  *
- * @param {String} bool
+ * @param {String} inputName
  * @returns {boolean}
  */
-function isTruthy(bool){
-	return ['1', 'true', 't', 'yes', 'yup', 'y'].includes(bool.toLowerCase());
+function isTruthy(inputName){
+	return ['1', 'true', 't', 'yes', 'yup', 'y'].includes(core.getInput(inputName).toLowerCase());
 }
 
 /**
@@ -126,7 +126,7 @@ async function checkIn(game){
 	};
 
 	// skip unwanted games
-	if(!isTruthy(core.getInput(game))){
+	if(!isTruthy(game)){
 		return returnMessage(null, false);
 	}
 
