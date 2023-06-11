@@ -1,3 +1,14 @@
+/**
+ * Hoyolab daily check-in action
+ *
+ * @link https://www.hoyolab.com/circles/
+ *
+ * @created      04.06.2023
+ * @author       smiley <smiley@chillerlan.net>
+ * @copyright    2023 smiley
+ * @license      MIT
+ */
+
 // https://jamie.build/const
 const core = require('@actions/core');
 const http = require('@actions/http-client');
