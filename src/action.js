@@ -61,7 +61,7 @@ const i18nGameNames = {
 };
 
 const httpClient         = new http.HttpClient(ua);
-const accountDescription = core.getInput('account-description').substring(0, 100).trim();
+const accountDescription = core.getInput('account-description').substring(0, 100);
 const onlyNotifyFailed   = isTruthy('only-notify-failed');
 
 let lang = core.getInput('language').toLowerCase();
@@ -106,7 +106,7 @@ function isTruthy(inputName){
 /**
  * Processes the check-in for the given game
  *
- * @param game
+ * @param {String} game
  * @returns {Promise<Object<{fail, game, text}>>}
  */
 async function checkIn(game){
@@ -145,7 +145,9 @@ async function checkIn(game){
 
 	// response seems ok
 	let data = JSON.parse(await response.readBody());
-	let msg = data.hasOwnProperty('message') ? data.message : `An unknown error occurred`;
+	let msg  = data.hasOwnProperty('message')
+		? data.message
+		: `An unknown error occurred`;
 
 	if(data.hasOwnProperty('retcode') && (data.retcode === 0 || data.retcode === -5003)){
 		// echo the message in case of success
@@ -165,8 +167,8 @@ async function checkIn(game){
  * @returns {Promise<void>}
  */
 async function sendDiscordNotification(messages){
-	let discordWebhook = core.getInput('discord-webhook').trim();
-	let discordUserID = core.getInput('discord-user-id').trim();
+	let discordWebhook = core.getInput('discord-webhook');
+	let discordUserID  = core.getInput('discord-user-id');
 
 	if(discordWebhook === ''){
 		core.setFailed('Invalid Discord webhook URL');
@@ -174,15 +176,11 @@ async function sendDiscordNotification(messages){
 		return;
 	}
 
-	let message = messages.map(m => {
-		let {fail, game, text} = m;
-
-		if(text === null || (isTruthy(onlyNotifyFailed) && fail === false)){
-			return '';
-		}
-
-		return `- [${gameNames[game]}] ${text}`;
-	}).filter(m => m.length > 0);
+	let message = messages.map(({fail, game, text}) => {
+		return (text === null || (onlyNotifyFailed && fail === false))
+			? null
+			: `- [${gameNames[game]}] ${text}`;
+	}).filter(m => m);
 
 	if(message.length > 0){
 
