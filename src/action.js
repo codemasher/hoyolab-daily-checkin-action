@@ -26,12 +26,38 @@ const urls      = {
 	starrail     : 'https://sg-public-api.hoyolab.com/event/luna/os/sign?act_id=e202303301540311',
 	tearsofthemis: 'https://sg-public-api.hoyolab.com/event/luna/os/sign?act_id=e202202281857121',
 };
-// todo: i18n
-const gameNames = {
-	genshin      : 'Genshin Impact',
-	honkai3rd    : 'Honkai Impact 3rd',
-	starrail     : 'Honkai Star Rail',
-	tearsofthemis: 'Tears of Themis',
+
+const i18nGameNames = {
+	'zh-cn': {
+		genshin      : '原神',
+		honkai3rd    : '崩坏3rd',
+		starrail     : '崩坏：星穹铁道',
+		tearsofthemis: '未定事件簿',
+	},
+	'zh-tw': {
+		genshin      : '原神',
+		honkai3rd    : '崩壞3rd',
+		starrail     : '崩壞：星穹鐵道',
+		tearsofthemis: '未定事件簿',
+	},
+	'en-us': {
+		genshin      : 'Genshin Impact',
+		honkai3rd    : 'Honkai Impact 3rd',
+		starrail     : 'Honkai Star Rail',
+		tearsofthemis: 'Tears of Themis',
+	},
+	'ja-jp': {
+		genshin      : '原神',
+		honkai3rd    : '崩壊3rd',
+		starrail     : '崩壊：スターレイル',
+		tearsofthemis: '未定事件簿',
+	},
+	'ko-kr': {
+		genshin      : '원신',
+		honkai3rd    : '붕괴3rd',
+		starrail     : '붕괴: 스타레일',
+		tearsofthemis: '미해결사건부',
+	},
 };
 
 const httpClient         = new http.HttpClient(ua);
@@ -44,6 +70,9 @@ let lang = core.getInput('language').toLowerCase();
 if(!languages.includes(lang)){
 	lang = 'en-us';
 }
+
+// set game name language
+let gameNames = (i18nGameNames[lang] || i18nGameNames['en-us']);
 
 // run and catch errors that may occur
 run().catch(error => core.setFailed(error.message));
