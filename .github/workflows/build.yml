@@ -31,17 +31,8 @@ jobs:
       - name: "Build"
         run: npm run build
 
-      - name: "git diff"
-        id: diff
-        run: |
-          git diff --quiet ./dist || echo "changed=true" >> $GITHUB_OUTPUT
-
       - name: "Commit dist files"
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add dist/index.js
-          git add dist/licenses.txt
-          git commit -m ":octocat: built dist"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ":octocat: built dist"
+          file_pattern: 'dist/index.js dist/licenses.txt'
