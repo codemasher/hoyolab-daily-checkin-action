@@ -2847,7 +2847,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(523);
 const http = __nccwpck_require__(945);
 
-const ua        = 'hoyolabDailyCheckinAction/1.0 +https://github.com/codemasher/hoyolab-daily-checkin-action';
+const ua        = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36';
 const avatar    = 'https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/kirara.png';
 const games     = ['genshin', 'honkai3rd', 'starrail', 'tearsofthemis'];
 const languages = [
@@ -2984,6 +2984,13 @@ async function checkIn(game){
 		: `An unknown error occurred`;
 
 	if(data.hasOwnProperty('retcode') && (data.retcode === 0 || data.retcode === -5003)){
+
+		if(game === 'genshin' && data.data.gt_result.is_risk && data.data.gt_result.risk_code === 5001){
+			msg = 'claim error: captcha needs to be solved (probably) https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481'
+
+			return returnMessage(msg, true);
+		}
+
 		// echo the message in case of success
 		core.info(`\u001b[38;5;40m${msg} (${gameNames[game]})`);
 
