@@ -20,12 +20,18 @@ const languages = [
 	'zh-cn', 'zh-tw', 'de-de', 'en-us', 'es-es', 'fr-fr', 'id-id', 'it-it',
 	'ja-jp', 'ko-kr', 'pt-pt', 'ru-ru', 'th-th', 'tr-tr', 'vi-vn',
 ];
-const urls      = {
+const apiURLs      = {
 	genshin      : 'https://sg-hk4e-api.hoyolab.com/event/sol/sign?act_id=e202102251931481',
 	honkai3rd    : 'https://sg-public-api.hoyolab.com/event/mani/sign?act_id=e202110291205111',
 	starrail     : 'https://sg-public-api.hoyolab.com/event/luna/os/sign?act_id=e202303301540311',
 	tearsofthemis: 'https://sg-public-api.hoyolab.com/event/luna/os/sign?act_id=e202202281857121',
 };
+const checkInURLs = {
+	genshin      : 'https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481',
+	honkai3rd    : 'https://act.hoyolab.com/bbs/event/signin-bh3/index.html?act_id=e202110291205111',
+	starrail     : 'https://act.hoyolab.com/bbs/event/signin/hkrpg/index.html?act_id=e202303301540311',
+	tearsofthemis: 'https://act.hoyolab.com/bbs/event/signin/nxx/index.html?act_id=e202202281857121',
+}
 
 const i18nGameNames = {
 	'zh-cn': {
@@ -131,7 +137,7 @@ async function checkIn(game){
 	}
 
 	// fire check-in request
-	let response = await httpClient.post(`${urls[game]}&lang=${lang}`, '', {cookie: core.getInput('cookie')});
+	let response = await httpClient.post(`${apiURLs[game]}&lang=${lang}`, '', {cookie: core.getInput('cookie')});
 
 	// oop
 	if(response.message.statusCode !== 200){
@@ -153,9 +159,7 @@ async function checkIn(game){
 
 		// geetest captcha for genshin kicked in
 		if(game === 'genshin' && data.data.gt_result.risk_code === 5001){
-			msg = 'claim error: captcha needs to be solved (probably) https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481'
-
-			return returnMessage(msg, true);
+			return returnMessage(`claim error: captcha needs to be solved ${checkInURLs[game]}`, true);
 		}
 
 		// echo the message in case of success
