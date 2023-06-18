@@ -13,7 +13,7 @@
 const core = require('@actions/core');
 const http = require('@actions/http-client');
 
-const ua        = 'hoyolabDailyCheckinAction/1.0 +https://github.com/codemasher/hoyolab-daily-checkin-action';
+const ua        = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36';
 const avatar    = 'https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/kirara.png';
 const games     = ['genshin', 'honkai3rd', 'starrail', 'tearsofthemis'];
 const languages = [
