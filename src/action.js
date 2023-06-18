@@ -151,7 +151,8 @@ async function checkIn(game){
 
 	if(data.hasOwnProperty('retcode') && (data.retcode === 0 || data.retcode === -5003)){
 
-		if(game === 'genshin' && data.data.gt_result.is_risk && data.data.gt_result.risk_code === 5001){
+		// geetest captcha for genshin kicked in
+		if(game === 'genshin' && data.data.gt_result.risk_code === 5001){
 			msg = 'claim error: captcha needs to be solved (probably) https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481'
 
 			return returnMessage(msg, true);
