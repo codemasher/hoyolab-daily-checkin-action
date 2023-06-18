@@ -153,7 +153,7 @@ async function checkIn(game){
 	let data = JSON.parse(await response.readBody());
 	let msg  = data.hasOwnProperty('message')
 		? data.message
-		: `An unknown error occurred`;
+		: 'An unknown error occurred';
 
 	if(data.hasOwnProperty('retcode') && (data.retcode === 0 || data.retcode === -5003)){
 
