@@ -110,6 +110,23 @@ function isTruthy(inputName){
 }
 
 /**
+ * deep check for nested values in objects
+ *
+ * `isset(() => obj.some.nested.value)`
+ *
+ * @param {Function} accessor Function that returns our value
+ */
+function isset(accessor){
+	try{
+		return typeof accessor() !== 'undefined';
+	}
+	catch(e){
+		return false;
+	}
+}
+
+
+/**
  * Processes the check-in for the given game
  *
  * @param {String} game
@@ -158,7 +175,7 @@ async function checkIn(game){
 	if(data.hasOwnProperty('retcode') && (data.retcode === 0 || data.retcode === -5003)){
 
 		// geetest captcha for genshin kicked in
-		if(game === 'genshin' && data.data.gt_result.risk_code === 5001){
+		if(game === 'genshin' && isset(() => data.data.gt_result.risk_code) && data.data.gt_result.risk_code === 5001){
 			return returnMessage(`claim error: captcha needs to be solved ${checkInURLs[game]}`, true);
 		}
 
