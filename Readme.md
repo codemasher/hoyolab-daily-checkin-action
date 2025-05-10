@@ -13,38 +13,6 @@ If you want to run this action, fork and use the [codemasher/hoyolab-daily-check
 [gh-action-badge]: https://img.shields.io/github/actions/workflow/status/codemasher/hoyolab-daily-checkin-action/build.yml?branch=main&logo=github
 [gh-action]: https://github.com/codemasher/hoyolab-daily-checkin-action/actions/workflows/build.yml?query=branch%3Amain
 
-## Usage
-
-Create a new repository with an actions workflow: `.github/workflows/checkin.yml` which contains the following:
-
-```yml
-on:
-  schedule:
-    - cron: "0 19 * * *"
-
-jobs:
-  hoyolab-checkin:
-
-    name: "Hoyolab daily check-in"
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: "Checkout"
-        uses: actions/checkout@v3
-
-      - name: "Hoyolab check-in (Account 1)"
-        uses: codemasher/hoyolab-daily-checkin-action@main
-        with:
-          cookie: ${{ secrets.ACCOUNT1 }}
-          language: "en-us"
-          genshin: true
-          honkai3rd: true
-          starrail: true
-          tearsofthemis: false
-     
-       # repeat the previous step for each of your accounts
-```
-
 ## Inputs
 
 - `cookie`: *[required]* The id/token cookie parameters from Hoyolab
@@ -77,7 +45,7 @@ Open your webbrowser, navigate to [Hoyolab Circles](https://www.hoyolab.com/circ
 Now it gets a little bit scary: open the browser's developer console (usually by pressing `F12`), go to the "console" tab and paste the following code snippet:
 ```js
 let cookies = document.cookie.split(';').map(v => v.trim().split('='));
-console.log(cookies.map(([k, v]) => ['ltuid', 'ltoken'].includes(k) ? `${k}=${v};` : null).filter(v => v).join(' '));
+console.log(cookies.map(([k, v]) => ['ltuid_v2', 'ltoken'].includes(k) ? `${k}=${v};` : null).filter(v => v).join(' '));
 ```
 When you hit `Enter` it will return a line similar to the following - copy that line:
 ```
