@@ -49,10 +49,10 @@ console.log(cookies.map(([k, v]) => ['ltuid_v2', 'ltoken_v2'].includes(k) ? `${k
 ```
 When you hit `Enter` it will return a line similar to the following - copy that line:
 ```
-ltuid=000000000; ltoken=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
+ltuid_v2=000000000; ltoken_v2=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 ```
 <p align="center">
-	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin/main/.github/images/get-token.png">
+	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/get-token.png">
 </p>
 
 #### Add repo secrets
@@ -63,7 +63,7 @@ Go to the [repository secrets settings **(R)**](../../settings/secrets/actions),
 enter a descriptive name, paste the token from the previous step into the text box below and save it.
 
 <p align="center">
-	<img alt="The repository secrets" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin/main/.github/images/repo-secrets.png">
+	<img alt="The repository secrets" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/repo-secrets.png">
 </p>
 
 It's important that you *do not log out from the Hoyolab account* - logging out will invalidate the token, and you will need to repeat the previous steps and update the secret(s).
@@ -109,7 +109,7 @@ When you're done editing, save/commit the file and head over to the [actions tab
 *Update:* it seems that editing via the web interface does not always trigger a `git push` event properly that would start a job run, so you will need to wait for the scheduled job in that case.
 
 <p align="center">
-	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin/main/.github/images/job-done.png">
+	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/job-done.png">
 </p>
 
 #### Notification settings
@@ -192,7 +192,7 @@ You can enable Discord notifications via webhook to a channel on your server. In
  ```
 
 <p align="center">
-	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin/main/.github/images/discord-notification.png">
+	<img alt="The developer console" style="width: 550px; height: auto;" src="https://raw.githubusercontent.com/codemasher/hoyolab-daily-checkin-action/main/.github/images/discord-notification.png">
 </p>
 
 ### Advanced
