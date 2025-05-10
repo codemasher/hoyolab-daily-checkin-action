@@ -115,6 +115,7 @@ function isTruthy(inputName){
  * `isset(() => obj.some.nested.value)`
  *
  * @param {Function} accessor Function that returns our value
+ * @returns {boolean}
  */
 function isset(accessor){
 	try{
